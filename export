@@ -48,6 +48,9 @@ def main():
         # write the indicators as column headers
         header = ['Process', 'Description', 'Type', 'Category', 'Last Change', 
                   'Valid From', 'Valid To', 'Technology', 'Data Completeness',
+                  'Data Selection', 'LCI Method', 'Data Treatment',
+                  'Sampling', 'Data Owner', 'Restrictions',
+                  'Intended Application', 'Sources',
                   'Location', 'Product', 'Amount', 'Unit']
         for i in indicators:
             header.append(enc('%s (%s)' % (i.name, i.referenceUnit)))
@@ -81,7 +84,14 @@ def main():
               	process.documentation.validUntil,
               	process.documentation.technology,
               	process.documentation.completeness,
-              	process.documentation.selection,
+              	process.documentation.dataSelection,
+              	process.documentation.inventoryMethod,
+              	process.documentation.dataTreatment,
+              	process.documentation.sampling,
+              	process.documentation.dataSetOwner.name,
+              	process.documentation.restrictions,
+              	process.documentation.intendedApplication,
+              	process.documentation.sources,
               	process.location.name,
               	enc(Labels.getDisplayName(qref.flow)),
                 1.0, # qref.amount,
@@ -123,3 +133,4 @@ def enc(s):
 
 if __name__ == "__main__":
     Display.getDefault().asyncExec(main)
+    
